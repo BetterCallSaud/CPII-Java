@@ -1,15 +1,20 @@
-class Thread1 implements Runnable {
+class MultiThreading implements Runnable {
 
-    public static void main(String[] args) {
-        Thread t1 = new Thread("Java");
-        Thread t2 = new Thread("Python");
-        t1.start();
-        t2.start();
-        System.out.println("Following are the thread names:");
-        System.out.println(t1.getName());
-        System.out.println(t2.getName());
+    public void run() {
+        try {
+            System.out.println("Thread " + Thread.currentThread().getId() + " is running");
+        } catch(Exception ex) {
+            System.out.println("Exception is caught.");
+        }
     }
+}
 
-    @Override
-    public void run() {}
+class Thread1 {
+    public static void main(String[] args) {
+            int num = 10; // Number of threads
+            for (int i = 0; i < num; ++i) {
+                Thread thread = new Thread(new MultiThreading());
+                thread.start();
+            }
+    }
 }
